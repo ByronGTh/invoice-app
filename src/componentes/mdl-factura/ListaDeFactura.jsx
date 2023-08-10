@@ -18,10 +18,10 @@ export const ListaDeFactura = () => {
             </tbody>
             <tfoot className="table-active table-group-divider">
                 <tr>
-                    <td rowspan="8">
-                        <div class="mb-3">
-                            <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    <td rowSpan="8">
+                        <div className="mb-3">
+                            <label htmlFor="exampleFormControlTextarea1" className="form-label">Example textarea</label>
+                            <textarea className="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                         </div>
                     </td>
                 </tr>

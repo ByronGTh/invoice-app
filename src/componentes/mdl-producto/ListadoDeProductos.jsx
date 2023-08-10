@@ -2,12 +2,17 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { getProductos } from "../../services/productoService";
 
+const estadoInicialProducto=[];
 export const ListadoDeProductos = ()=>{
 
-    const [productos, setproductos] = useState([]);
+    const [productos, setproductos] = useState(estadoInicialProducto);
     useEffect( ()=>{
         setproductos(getProductos);
     }, []);
+
+    const agregarProducto =(producto) =>{
+        console.log(producto);
+    }
 
     return(<>
         <div className="container">
@@ -20,7 +25,7 @@ export const ListadoDeProductos = ()=>{
                                 <h5 className="card-title">{prod.name}</h5>
                                 <p className="card-text">{prod.description}</p>
                                 <p className="card-text">{prod.price}</p>
-                                <button className="btn btn-primary">Agregar</button>
+                                <button className="btn btn-primary" onClick={ () => agregarProducto(prod) }>Agregar</button>
                             </div>
                         </div>
                     </div>
