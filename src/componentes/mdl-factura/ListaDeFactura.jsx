@@ -1,6 +1,6 @@
 import { ArticuloEnLista } from "./ArticuloEnLista";
 
-export const ListaDeFactura = () => {
+export const ListaDeFactura = ({items}) => {
     return (<>
         <table className="table table-striped table-hover caption-top">
             <caption className="fw-bold fs-5">Factura</caption>
@@ -14,7 +14,7 @@ export const ListaDeFactura = () => {
                 </tr>
             </thead>
             <tbody>
-                <ArticuloEnLista/>
+                <ArticuloEnLista items={items}/>
             </tbody>
             <tfoot className="table-active table-group-divider">
                 <tr>
