@@ -1,25 +1,14 @@
-export const ArticuloEnLista = () => {
+export const ArticuloEnLista = ({items}) => {
     return (<>
-        <tr>
-            <td>Botones</td>
-            <td>Producto de prueba</td>
-            <td>1</td>
-            <td>500</td>
-            <td>500</td>
-        </tr>
-        <tr>
-            <td>Botones</td>
-            <td>Producto de prueba</td>
-            <td>2</td>
-            <td>100</td>
-            <td>200</td>
-        </tr>
-        <tr>
-            <td>Botones</td>
-            <td>Producto de prueba</td>
-            <td>3</td>
-            <td>150</td>
-            <td>450</td>
-        </tr>
+        {items.map( item =>(
+            <tr key={item.producto.id}>
+                <td>Botones</td>
+                <td>{item.producto.name}</td>
+                <td>1</td>
+                <td>{item.producto.price}</td>
+                <td>{item.producto.price * 2}</td>
+            </tr>
+
+         ))}
     </>);
 }
