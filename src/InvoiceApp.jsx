@@ -1,9 +1,34 @@
+import { useState } from "react";
 import { DatosDeCliente } from "./componentes/mdl-factura/DatosDeCliente";
 import { DatosDeEnvio } from "./componentes/mdl-factura/DatosDeEnvio";
 import { DatosFactura } from "./componentes/mdl-factura/DatosFactura";
 import { ListaDeFactura } from "./componentes/mdl-factura/ListaDeFactura";
+import { ListadoDeProductos } from "./componentes/mdl-producto/ListadoDeProductos";
+import { getProductos } from "./services/productoService";
+
+const estadoInicialProducto=[
+  /*{
+    producto:{
+      id: 1,
+        name: 'Teclado Mecanico RGB',
+        description: 'Teclado Mecánico con luces RGB switches cherry red',
+        price: 1000
+    }
+  }*/
+];
 
 export const InvoiceApp = () => {
+
+  const [productos, setproductos] = useState(estadoInicialProducto);
+
+    /*useEffect( ()=>{
+        setproductos(getProductos);
+    }, []);*/
+
+  const agregarProductoAFactura = (producto) => {
+
+  }
+
   return (<>
     <div className="container-fluid">
       <div className="row">
@@ -42,14 +67,16 @@ export const InvoiceApp = () => {
 
                 </div>
 
-                <div className="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabIndex="0">...</div>
+                <div className="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabIndex="0">
+                  <ListadoDeProductos/>
+                </div>
               </div>
 
 
               <div className="row mt-3">
                 <div className="col">
                   {/* <h3>Productos en factura</h3> */}
-                  <ListaDeFactura/>
+                  <ListaDeFactura  items={ productos }/>
                 </div>
               </div> {/* Fin del row contenedor de la tabla */}
               {/* <div className="row">
