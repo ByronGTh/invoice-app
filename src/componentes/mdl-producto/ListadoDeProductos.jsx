@@ -3,15 +3,15 @@ import { useState } from "react";
 import { getProductos } from "../../services/productoService";
 
 const estadoInicialProducto=[];
-export const ListadoDeProductos = ()=>{
+export const ListadoDeProductos = ({manejadorDeProducto})=>{
 
     const [productos, setproductos] = useState(estadoInicialProducto);
     useEffect( ()=>{
         setproductos(getProductos);
     }, []);
 
-    const agregarProducto =(producto) =>{
-        console.log(producto);
+    const agregarProducto = (producto) =>{
+        manejadorDeProducto(producto);
     }
 
     return(<>
