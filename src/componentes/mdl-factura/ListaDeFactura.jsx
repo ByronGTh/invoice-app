@@ -53,6 +53,15 @@ export const ListaDeFactura = ({items}) => {
                     <td colSpan={3} className="text-end">Total:</td>
                     <td><span className="badge bg-primary">750</span></td>
                 </tr>
+                <tr>
+                    <td colSpan={4} className="text-end">Efectivo:</td>
+                    <td><span className="badge bg-primary">0000</span></td>
+                </tr>
+                <tr>
+                    <td colSpan={4} className="text-end">Cambio:</td>
+                    <td><span className="badge bg-primary">0000</span></td>
+                </tr>
+
                 {/* <tr>
                         <td>
                           <table className="table table-striped table-hover table-bordered">
