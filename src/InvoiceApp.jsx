@@ -6,27 +6,21 @@ import { ListaDeFactura } from "./componentes/mdl-factura/ListaDeFactura";
 import { ListadoDeProductos } from "./componentes/mdl-producto/ListadoDeProductos";
 import { getProductos } from "./services/productoService";
 
-const estadoInicialProducto=[
-  /*{
-    producto:{
-      id: 1,
-        name: 'Teclado Mecanico RGB',
-        description: 'Teclado Mecánico con luces RGB switches cherry red',
-        price: 1000
-    }
-  }*/
-];
+const estadoInicialProducto=[];
 
 export const InvoiceApp = () => {
 
-  const [productos, setproductos] = useState(estadoInicialProducto);
-
-    /*useEffect( ()=>{
-        setproductos(getProductos);
-    }, []);*/
+  const [productos, setProductos] = useState(estadoInicialProducto);
 
   const agregarProductoAFactura = (producto) => {
-
+    setProductos([
+      ...productos,
+      {
+        producto,
+        cantidad: 1,
+        subtotal: producto.price * 1 
+      }
+    ]);
   }
 
   return (<>
@@ -68,22 +62,16 @@ export const InvoiceApp = () => {
                 </div>
 
                 <div className="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabIndex="0">
-                  <ListadoDeProductos/>
+                  <ListadoDeProductos manejadorDeProducto={agregarProductoAFactura}/>
                 </div>
               </div>
 
 
               <div className="row mt-3">
                 <div className="col">
-                  {/* <h3>Productos en factura</h3> */}
                   <ListaDeFactura  items={ productos }/>
                 </div>
               </div> {/* Fin del row contenedor de la tabla */}
-              {/* <div className="row">
-                <div className="col-6">
-                  
-                </div>
-              </div> */}
               <div className="row align-items-end">
                 <div className="col">
                   <form action="">
