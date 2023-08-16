@@ -5,7 +5,6 @@ import { ListadoDeProductos } from './componentes/mdl-producto/ListadoDeProducto
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <ListadoDeProductos/>
     <InvoiceApp />
   </React.StrictMode>,
 )
