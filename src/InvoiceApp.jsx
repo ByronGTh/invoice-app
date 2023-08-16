@@ -37,6 +37,12 @@ export const InvoiceApp = () => {
 
   }
 
+  const manejadorEliminarProductoDeLista = (id) => {
+    setProductos([
+      ...productos.filter( (i) => i.producto.id !== id )
+    ]);
+  }
+
   return (<>
     <div className="container-fluid">
       <div className="row">
@@ -83,7 +89,7 @@ export const InvoiceApp = () => {
 
               <div className="row mt-3">
                 <div className="col">
-                  <ListaDeFactura  items={ productos }/>
+                  <ListaDeFactura  items={ productos } manejadorParaEliminar={manejadorEliminarProductoDeLista}/>
                 </div>
               </div> {/* Fin del row contenedor de la tabla */}
               <div className="row align-items-end">
