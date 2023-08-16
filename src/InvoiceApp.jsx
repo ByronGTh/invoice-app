@@ -13,14 +13,28 @@ export const InvoiceApp = () => {
   const [productos, setProductos] = useState(estadoInicialProducto);
 
   const agregarProductoAFactura = (producto) => {
-    setProductos([
-      ...productos,
-      {
-        producto,
-        cantidad: 1,
-        subtotal: producto.price * 1 
-      }
-    ]);
+
+    const hasItem = productos.find( (i) => i.producto.id === producto.id);
+
+    if(hasItem){
+      setProductos(
+        productos.map( (i) => {
+          if( i.producto.id === producto.id ){
+            i.cantidad = i.cantidad + 1;
+          }
+          return i;
+        })
+      );
+    }else{
+      setProductos([
+        ...productos,
+        {
+          producto,
+          cantidad: 1,
+        }
+      ]);
+    }
+
   }
 
   return (<>
