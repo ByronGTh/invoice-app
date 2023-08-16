@@ -1,6 +1,6 @@
 import { ArticuloEnLista } from "./ArticuloEnLista";
 
-export const ListaDeFactura = ({items}) => {
+export const ListaDeFactura = ({items, manejadorParaEliminar}) => {
     return (<>
         <table className="table table-striped table-hover caption-top">
             <caption className="fw-bold fs-5">Factura</caption>
@@ -14,7 +14,7 @@ export const ListaDeFactura = ({items}) => {
                 </tr>
             </thead>
             <tbody>
-                <ArticuloEnLista items={items}/>
+                <ArticuloEnLista items={items} quitarDeLista={manejadorParaEliminar}/>
             </tbody>
             <tfoot className="table-active table-group-divider">
                 <tr>
@@ -27,39 +27,39 @@ export const ListaDeFactura = ({items}) => {
                 </tr>
                 <tr>
                     <td colSpan={3} className="text-end">subtotal:</td>
-                    <td><span className="badge bg-primary">750</span></td>
+                    <td><span className="badge bg-primary">0.00</span></td>
                 </tr>
                 <tr>
                     <td colSpan={3} className="text-end">impuesto (15%):</td>
-                    <td><span className="badge bg-primary">750</span></td>
+                    <td><span className="badge bg-primary">0.00</span></td>
                 </tr>
                 <tr>
                     <td colSpan={3} className="text-end">descuento:</td>
-                    <td><span className="badge bg-primary">750</span></td>
+                    <td><span className="badge bg-primary">0.00</span></td>
                 </tr>
                 <tr>
                     <td colSpan={3} className="text-end">excento:</td>
-                    <td><span className="badge bg-primary">750</span></td>
+                    <td><span className="badge bg-primary">0.00</span></td>
                 </tr>
                 <tr>
                     <td colSpan={3} className="text-end">Envio:</td>
-                    <td><span className="badge bg-primary">50</span></td>
+                    <td><span className="badge bg-primary">0</span></td>
                 </tr>
                 <tr>
                     <td colSpan={3} className="text-end">total articulos:</td>
-                    <td><span className="badge bg-primary">750</span></td>
+                    <td><span className="badge bg-primary">0</span></td>
                 </tr>
                 <tr>
                     <td colSpan={3} className="text-end">Total:</td>
-                    <td><span className="badge bg-primary">750</span></td>
+                    <td><span className="badge bg-primary">0.00</span></td>
                 </tr>
                 <tr>
                     <td colSpan={4} className="text-end">Efectivo:</td>
-                    <td><span className="badge bg-primary">0000</span></td>
+                    <td><span className="badge bg-primary">0.00</span></td>
                 </tr>
                 <tr>
                     <td colSpan={4} className="text-end">Cambio:</td>
-                    <td><span className="badge bg-primary">0000</span></td>
+                    <td><span className="badge bg-primary">0.00</span></td>
                 </tr>
 
                 {/* <tr>
