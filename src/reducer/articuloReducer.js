@@ -13,15 +13,18 @@ export const articuloReducer = (state = [], action) => {
             
             return state.map( (i) => {
                 if( i.producto.id === action.payload.id ){
-                  i.cantidad = i.cantidad + 1;
+                    return {
+                        ...i,
+                        cantidad: i.cantidad + 1
+
+                    }
+                  //i.cantidad = i.cantidad + 1;
                 }
                 return i;
               });
         case 'EliminarProductoDeFactura':
             
-            return [
-                ...action.filter( (i) => i.producto.id !== action.payload )
-            ];
+            return state.filter( (i) => i.producto.id !== action.payload );
     
         default:
             return state;
