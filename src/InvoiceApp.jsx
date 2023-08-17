@@ -1,46 +1,43 @@
-import { useState } from "react";
+import { useReducer, useState } from "react";
 import { DatosDeCliente } from "./componentes/mdl-factura/DatosDeCliente";
 import { DatosDeEnvio } from "./componentes/mdl-factura/DatosDeEnvio";
 import { DatosFactura } from "./componentes/mdl-factura/DatosFactura";
 import { ListaDeFactura } from "./componentes/mdl-factura/ListaDeFactura";
 import { ListadoDeProductos } from "./componentes/mdl-producto/ListadoDeProductos";
 import { getProductos } from "./services/productoService";
+import { articuloReducer } from "./reducer/articuloReducer";
 
 const estadoInicialProducto = JSON.parse(sessionStorage.getItem('listaDeVenta'))  || [];
 
 export const InvoiceApp = () => {
 
-  const [productos, setProductos] = useState(estadoInicialProducto);
+  const [productos, dispatch] = useReducer(articuloReducer, estadoInicialProducto);
 
   const agregarProductoAFactura = (producto) => {
 
     const hasItem = productos.find( (i) => i.producto.id === producto.id);
 
     if(hasItem){
-      setProductos(
-        productos.map( (i) => {
-          if( i.producto.id === producto.id ){
-            i.cantidad = i.cantidad + 1;
-          }
-          return i;
-        })
+      dispatch(
+        {
+          type: 'ActuralizarCantidadDeProducto',
+          payload: producto
+        }
       );
     }else{
-      setProductos([
-        ...productos,
-        {
-          producto,
-          cantidad: 1,
-        }
-      ]);
+      dispatch({
+        type: 'AgregarProductoAFactura',
+        payload: producto
+      });
     }
 
   }
 
   const manejadorEliminarProductoDeLista = (id) => {
-    setProductos([
-      ...productos.filter( (i) => i.producto.id !== id )
-    ]);
+    dispatch({
+      type: 'EliminarProductoDeFactura',
+      payload: id
+    });
   }
 
   return (<>
