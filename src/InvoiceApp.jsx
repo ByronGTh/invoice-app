@@ -6,7 +6,7 @@ import { ListaDeFactura } from "./componentes/mdl-factura/ListaDeFactura";
 import { ListadoDeProductos } from "./componentes/mdl-producto/ListadoDeProductos";
 import { getProductos } from "./services/productoService";
 
-const estadoInicialProducto=[];
+const estadoInicialProducto = JSON.parse(sessionStorage.getItem('listaDeVenta') || []);
 
 export const InvoiceApp = () => {
 
