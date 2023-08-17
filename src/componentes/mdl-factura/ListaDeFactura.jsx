@@ -1,6 +1,17 @@
+import { useEffect, useState } from "react";
 import { ArticuloEnLista } from "./ArticuloEnLista";
 
 export const ListaDeFactura = ({items, manejadorParaEliminar}) => {
+
+    const [total, setTotal] = useState(0);
+    //const [subtotal, setSubtotal] = useState(0);
+    const [totalArticulos, setTotalArticulos] = useState(0);
+
+    useEffect( () => {
+        setTotal( items.reduce( (acumulador, item) => acumulador + item.producto.price * item.cantidad, 0 ) );
+        setTotalArticulos( items.reduce( (acumulador, item) => acumulador + item.cantidad, 0 ) );
+    }, [ items ] )
+
     return (<>
         <table className="table table-striped table-hover caption-top">
             <caption className="fw-bold fs-5">Factura</caption>
@@ -27,7 +38,7 @@ export const ListaDeFactura = ({items, manejadorParaEliminar}) => {
                 </tr>
                 <tr>
                     <td colSpan={3} className="text-end">subtotal:</td>
-                    <td><span className="badge bg-primary">0.00</span></td>
+                    <td><span className="badge bg-primary">{ total }</span></td>
                 </tr>
                 <tr>
                     <td colSpan={3} className="text-end">impuesto (15%):</td>
@@ -47,11 +58,11 @@ export const ListaDeFactura = ({items, manejadorParaEliminar}) => {
                 </tr>
                 <tr>
                     <td colSpan={3} className="text-end">total articulos:</td>
-                    <td><span className="badge bg-primary">0</span></td>
+                    <td><span className="badge bg-primary">{ totalArticulos }</span></td>
                 </tr>
                 <tr>
                     <td colSpan={3} className="text-end">Total:</td>
-                    <td><span className="badge bg-primary">0.00</span></td>
+                    <td><span className="badge bg-primary">{ total }</span></td>
                 </tr>
                 <tr>
                     <td colSpan={4} className="text-end">Efectivo:</td>
