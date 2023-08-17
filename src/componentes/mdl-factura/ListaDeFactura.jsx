@@ -10,6 +10,7 @@ export const ListaDeFactura = ({items, manejadorParaEliminar}) => {
     useEffect( () => {
         setTotal( items.reduce( (acumulador, item) => acumulador + item.producto.price * item.cantidad, 0 ) );
         setTotalArticulos( items.reduce( (acumulador, item) => acumulador + item.cantidad, 0 ) );
+        sessionStorage.setItem( 'listaDeVenta', JSON.stringify( items ) );
     }, [ items ] )
 
     return (<>
