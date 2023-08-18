@@ -6,6 +6,7 @@ import { ListaDeFactura } from "./componentes/mdl-factura/ListaDeFactura";
 import { ListadoDeProductos } from "./componentes/mdl-producto/ListadoDeProductos";
 import { getProductos } from "./services/productoService";
 import { articuloReducer } from "./reducer/articuloReducer";
+import { ACTUALIZAR_CANTIDAD_DE_PRODUCTO, AGREGAR_PRODUCTO_A_FACTURA, ELIMINAR_PRODUCTO_DE_FACTURA } from "./reducer/etiquetasDeAcciones";
 
 const estadoInicialProducto = JSON.parse(sessionStorage.getItem('listaDeVenta'))  || [];
 
@@ -20,13 +21,13 @@ export const InvoiceApp = () => {
     if(hasItem){
       dispatch(
         {
-          type: 'ActuralizarCantidadDeProducto',
+          type: ACTUALIZAR_CANTIDAD_DE_PRODUCTO,
           payload: producto
         }
       );
     }else{
       dispatch({
-        type: 'AgregarProductoAFactura',
+        type: AGREGAR_PRODUCTO_A_FACTURA,
         payload: producto
       });
     }
@@ -35,7 +36,7 @@ export const InvoiceApp = () => {
 
   const manejadorEliminarProductoDeLista = (id) => {
     dispatch({
-      type: 'EliminarProductoDeFactura',
+      type: ELIMINAR_PRODUCTO_DE_FACTURA,
       payload: id
     });
   }
