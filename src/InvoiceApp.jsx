@@ -1,46 +1,14 @@
-import { useReducer, useState } from "react";
 import { DatosDeCliente } from "./componentes/mdl-factura/DatosDeCliente";
 import { DatosDeEnvio } from "./componentes/mdl-factura/DatosDeEnvio";
 import { DatosFactura } from "./componentes/mdl-factura/DatosFactura";
 import { ListaDeFactura } from "./componentes/mdl-factura/ListaDeFactura";
 import { ListadoDeProductos } from "./componentes/mdl-producto/ListadoDeProductos";
-import { getProductos } from "./services/productoService";
-import { articuloReducer } from "./reducer/articuloReducer";
-import { ACTUALIZAR_CANTIDAD_DE_PRODUCTO, AGREGAR_PRODUCTO_A_FACTURA, ELIMINAR_PRODUCTO_DE_FACTURA } from "./reducer/etiquetasDeAcciones";
-
-const estadoInicialProducto = JSON.parse(sessionStorage.getItem('listaDeVenta'))  || [];
+import { useArticulosFactura } from "./hooks/useArticulosFactura";
 
 export const InvoiceApp = () => {
 
-  const [productos, dispatch] = useReducer(articuloReducer, estadoInicialProducto);
-
-  const agregarProductoAFactura = (producto) => {
-
-    const hasItem = productos.find( (i) => i.producto.id === producto.id);
-
-    if(hasItem){
-      dispatch(
-        {
-          type: ACTUALIZAR_CANTIDAD_DE_PRODUCTO,
-          payload: producto
-        }
-      );
-    }else{
-      dispatch({
-        type: AGREGAR_PRODUCTO_A_FACTURA,
-        payload: producto
-      });
-    }
-
-  }
-
-  const manejadorEliminarProductoDeLista = (id) => {
-    dispatch({
-      type: ELIMINAR_PRODUCTO_DE_FACTURA,
-      payload: id
-    });
-  }
-
+  const { productos, agregarProductoAFactura, manejadorEliminarProductoDeLista } = useArticulosFactura();
+  
   return (<>
     <div className="container-fluid">
       <div className="row">
