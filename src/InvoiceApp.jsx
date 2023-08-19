@@ -5,12 +5,14 @@ import { DatosFactura } from "./componentes/mdl-factura/DatosFactura";
 import { ListaDeFactura } from "./componentes/mdl-factura/ListaDeFactura";
 import { ListadoDeProductos } from "./componentes/mdl-producto/ListadoDeProductos";
 import { useArticulosFactura } from "./hooks/useArticulosFactura";
+import { Navbar } from "./componentes/navbar/Navbar";
 
 export const InvoiceApp = () => {
 
   const { productos, agregarProductoAFactura, manejadorEliminarProductoDeLista } = useArticulosFactura();
   
   return (<>
+    <Navbar/>
     <div className="container-fluid">
       <Routes>
         <Route path="factura" element={
