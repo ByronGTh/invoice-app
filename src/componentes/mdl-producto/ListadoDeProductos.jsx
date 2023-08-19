@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import { getProductos } from "../../services/productoService";
+import { useNavigate } from "react-router-dom";
 
 const estadoInicialProducto=[];
 export const ListadoDeProductos = ({manejadorDeProducto})=>{
@@ -10,8 +11,11 @@ export const ListadoDeProductos = ({manejadorDeProducto})=>{
         setproductos(getProductos);
     }, []);
 
+    const navigate = useNavigate();
+
     const agregarProducto = (producto) =>{
         manejadorDeProducto(producto);
+        navigate('/factura');
     }
 
     return(<>
