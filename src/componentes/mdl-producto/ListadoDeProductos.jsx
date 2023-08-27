@@ -7,8 +7,15 @@ const estadoInicialProducto=[];
 export const ListadoDeProductos = ({manejadorDeProducto})=>{
 
     const [productos, setproductos] = useState(estadoInicialProducto);
+
+    const extraerData = async() => {
+        const productosBackend =  await getProductos();
+        setproductos(productosBackend);
+    }
+
     useEffect( ()=>{
-        setproductos(getProductos);
+        extraerData();
+        //setproductos(getProductos); //Forma anteriro usada para extraer datos de un documentos JS
     }, []);
 
     const navigate = useNavigate();
