@@ -25,8 +25,10 @@ export const articuloReducer = (state = [], action) => {
                 return i;
               });
         case ELIMINAR_PRODUCTO_DE_FACTURA:
-            
             return state.filter( (i) => i.producto.id !== action.payload );
+
+        case 'cargarProductos':
+            return action.payload;
     
         default:
             return state;
