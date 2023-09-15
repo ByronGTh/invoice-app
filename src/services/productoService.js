@@ -16,7 +16,7 @@ export const getProductos = async() => {
 
 export const save = async({}) => {
     try {
-        return axios.post(BASE_URL, {name, description, price});
+        return await axios.post(BASE_URL, {name, description, price});
     } catch (error) {
         console.error(error);
     }
@@ -24,3 +24,12 @@ export const save = async({}) => {
     return undefined;
 }
 
+export const update = async({id, name, description, price}) => {
+    try {
+        return await axios.put(`${BASE_URL}/${id}`, {name, description, price});
+    } catch (error) {
+        console.error(error);
+    }
+
+    return undefined;
+}
