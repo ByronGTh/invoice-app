@@ -9,8 +9,8 @@ export const ListadoDeProductos = ({manejadorDeProducto})=>{
     const [productos, setproductos] = useState(estadoInicialProducto);
 
     const extraerData = async() => {
-        const productosBackend =  await getProductos();
-        setproductos(productosBackend);
+        const productosDelBackend =  await getProductos();
+        setproductos(productosDelBackend.data);
     }
 
     useEffect( ()=>{
