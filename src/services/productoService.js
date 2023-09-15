@@ -33,3 +33,11 @@ export const update = async({id, name, description, price}) => {
 
     return undefined;
 }
+
+export const remove = async(id) => {
+    try {
+        await axios.delete(`${BASE_URL}/${id}`);
+    } catch (error) {
+        console.error(error);
+    }
+}
