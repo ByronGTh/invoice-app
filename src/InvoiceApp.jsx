@@ -8,6 +8,7 @@ import { useArticulosFactura } from "./hooks/useArticulosFactura";
 import { Navbar } from "./componentes/navbar/Navbar";
 import { ListadoDeClientes } from "./componentes/mdl-cliente/ListadoDeClientes";
 import { DetalleCliente } from "./componentes/mdl-cliente/DetalleCliente";
+import { ListaDeUsuarios } from "./componentes/mdl-usuario/ListaDeUsuarios";
 
 export const InvoiceApp = () => {
 
@@ -83,6 +84,7 @@ export const InvoiceApp = () => {
         <Route path="productos" element={ <ListadoDeProductos manejadorDeProducto={agregarProductoAFactura}/> }/>
         <Route path="/" element={ <Navigate to={'/factura'}/> }/>     
         <Route path="clientes/detalle_cliente" element={ <DetalleCliente/> }/>
+        <Route path="usuarios" element={ <ListaDeUsuarios/> } />
       </Routes>
       
     </div>
