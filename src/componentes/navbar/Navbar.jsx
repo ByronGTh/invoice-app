@@ -25,6 +25,9 @@ export const Navbar = () => {
                         <li className="nav-item">
                             <NavLink className={'nav-link'} to={"/productos"}>Productos</NavLink>
                         </li>
+                        <li className="nav-item">
+                            <NavLink className={'nav-link'} to={"/usuarios"}>Usuarios</NavLink>
+                        </li>
                     </ul>
                 </div>
                 <div className="dropdown">
