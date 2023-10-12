@@ -13,11 +13,14 @@ export const Navbar = () => {
                 </button>
                 <div className="collapse navbar-collapse" id="navbarNav">
                     <ul className="navbar-nav">
-                        <li className="nav-item">
+                        {/*<li className="nav-item">
                             <NavLink className={'nav-link active'} to={"/"}>Home</NavLink>
-                        </li>
+                        </li>*/}
                         <li className="nav-item">
                             <NavLink className={'nav-link'} to={"/factura"}>Factura</NavLink>
+                        </li>
+                        <li className="nav-item">
+                            <NavLink className={'nav-link'} to={"/clientes"}>Clientes</NavLink>
                         </li>
                         <li className="nav-item">
                             <NavLink className={'nav-link'} to={"/productos"}>Productos</NavLink>
