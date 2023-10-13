@@ -36,7 +36,7 @@ export const ListaDeUsuarios = ()=>{
                     </tr>
                 </thead>
                 <tbody>
-                    {initialUsers.map( user => (
+                    {usuarios.map( user => (
                         <tr key={user.id}>
                             <td>{user.id}</td>
                             <td>{user.nombre_usuario}</td>
