@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { FormularioCliente } from "./FormularioCliente";
-import { DatosClientes } from "./DatosClintes";
+import { DatosClientes } from "./DatosClientes";
 
 export const ListadoDeClientes = () => {
     const [activarFormulario, setActivarFormulario] = useState(false);
