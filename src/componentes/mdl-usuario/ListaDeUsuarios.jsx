@@ -1,8 +1,49 @@
+import { useState } from "react";
+import { FormularioUsuario } from "./FormularioUsuario";
+
 export const ListaDeUsuarios = ()=>{
-    return(<form>
-        <input className="form-control my-3 w-75" type="text" name="nombre_usuario" placeholder="Nombre de usuario"/>
-        <input className="form-control my-3 w-75" type="text" name="clave" placeholder="Clave"/>
-        <input className="form-control my-3 w-75" type="text" name="email" placeholder="Email"/>
-        <button className="btn btn-success">Guardar</button>
-    </form>);
+
+    const initialUsers = [{
+        id: 1,
+        nombre_usuario: 'Nombre Usuario',
+        clave: '12345',
+        email: 'nombreusuario@correo.com'
+    }];
+
+    return(<div className="row">
+        <div className="col-6">
+            <FormularioUsuario/>
+        </div>
+        <div className="col-6">
+            <table className="table table-hover table-striped">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Usuario</th>
+                        <th>Email</th>
+                        <th>Editar</th>
+                        <th>Eliminar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {initialUsers.map( user => (
+                        <tr key={user.id}>
+                            <td>{user.id}</td>
+                            <td>{user.nombre_usuario}</td>
+                            <td>{user.email}</td>
+                            <td>
+                                <button className="btn btn-secondary">Editar</button>
+                            </td>
+                            <td>
+                                <button className="btn btn-danger">Eliminar</button>
+                            </td>
+                        </tr>
+                    )
+                    )}
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>
+    );
 }
