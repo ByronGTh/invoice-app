@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useReducer, useState } from "react";
 import { FormularioUsuario } from "./FormularioUsuario";
+import { usersReducer } from "../../reducer/usersReducer";
 
 export const ListaDeUsuarios = ()=>{
 
@@ -10,9 +11,18 @@ export const ListaDeUsuarios = ()=>{
         email: 'nombreusuario@correo.com'
     }];
 
+    const [usuarios, dispatch] = useReducer(usersReducer, initialUsers);
+
+    const handlerAgregarUsuario = ( usuario ) => {
+        dispatch({
+            type: 'addUser',
+            payload: usuario
+        });
+    }
+
     return(<div className="row">
         <div className="col-6">
-            <FormularioUsuario/>
+            <FormularioUsuario handlerAgregarUsuario={ handlerAgregarUsuario }/>
         </div>
         <div className="col-6">
             <table className="table table-hover table-striped">
