@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export const FormularioUsuario = () =>{
+export const FormularioUsuario = ( {handlerAgregarUsuario} ) =>{
 
     const initialUserForm = {
         nombre_usuario: '',
@@ -25,7 +25,8 @@ export const FormularioUsuario = () =>{
             alert('Todos los campos del formulario deben de estar llenos');
             return;
         }
-        console.log(formularioUsuario);
+        //console.log(formularioUsuario);
+        handlerAgregarUsuario(formularioUsuario);
         setFormularioUsuario(initialUserForm);
     }
     
