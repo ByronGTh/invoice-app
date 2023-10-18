@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-export const FormularioUsuario = ( {handlerAgregarUsuario} ) =>{
+export const FormularioUsuario = ( {handlerAgregarUsuario, usuarioSeleccionado} ) =>{
 
     const initialUserForm = {
         nombre_usuario: '',
@@ -9,6 +9,13 @@ export const FormularioUsuario = ( {handlerAgregarUsuario} ) =>{
     }
     const [formularioUsuario, setFormularioUsuario] = useState(initialUserForm);
     const {nombre_usuario, clave, email} = formularioUsuario;
+
+    useEffect( ()=>{
+        setFormularioUsuario({
+            ...usuarioSeleccionado, 
+            clave: ''
+        });
+    }, [usuarioSeleccionado] );
 
     const onInputChange = ({ target }) =>{
         console.log(target.value);
