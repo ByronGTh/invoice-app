@@ -21,8 +21,16 @@ export const ListaDeUsuarios = ()=>{
     const [usuarioSeleccionado, setUsuarioSeleccionado] = useState(initialUserForm);
 
     const handlerAgregarUsuario = ( usuario ) => {
+        let type;
+
+        if(usuario.id === 0){
+            type = 'addUser';
+        }else{
+            type = 'updateUser'
+        }
+
         dispatch({
-            type: 'addUser',
+            type,
             payload: usuario
         });
     }
