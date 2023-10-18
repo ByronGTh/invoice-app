@@ -1,4 +1,4 @@
-import { useReducer, useState } from "react";
+import { useEffect, useReducer, useState } from "react";
 import { FormularioUsuario } from "./FormularioUsuario";
 import { usersReducer } from "../../reducer/usersReducer";
 
@@ -11,13 +11,24 @@ export const ListaDeUsuarios = ()=>{
         email: 'nombreusuario@correo.com'
     }];
 
+    const initialUserForm = {
+        nombre_usuario: '',
+        clave: '',
+        email: ''
+    }
+
     const [usuarios, dispatch] = useReducer(usersReducer, initialUsers);
+    const [usuarioSeleccionado, setUsuarioSeleccionado] = useState(initialUserForm);
 
     const handlerAgregarUsuario = ( usuario ) => {
         dispatch({
             type: 'addUser',
             payload: usuario
         });
+    }
+
+    const handlerModificar = (usuario) => {
+        setUsuarioSeleccionado({ ...usuario });
     }
 
     const handlerEliminarUsuario = ( id ) =>{
@@ -29,7 +40,7 @@ export const ListaDeUsuarios = ()=>{
 
     return(<div className="row">
         <div className="col-6">
-            <FormularioUsuario handlerAgregarUsuario={ handlerAgregarUsuario }/>
+            <FormularioUsuario handlerAgregarUsuario={ handlerAgregarUsuario } usuarioSeleccionado={ usuarioSeleccionado }/>
         </div>
         <div className="col-6">
             {usuarios.length === 0
@@ -51,7 +62,7 @@ export const ListaDeUsuarios = ()=>{
                                 <td>{user.nombre_usuario}</td>
                                 <td>{user.email}</td>
                                 <td>
-                                    <button className="btn btn-secondary">Editar</button>
+                                    <button className="btn btn-secondary" onClick={ ()=> handlerModificar(user) }>Editar</button>
                                 </td>
                                 <td>
                                     <button className="btn btn-danger" onClick={()=> handlerEliminarUsuario(user.id)}>Eliminar</button>
