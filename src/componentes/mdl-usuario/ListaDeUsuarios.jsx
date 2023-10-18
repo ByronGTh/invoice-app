@@ -20,6 +20,13 @@ export const ListaDeUsuarios = ()=>{
         });
     }
 
+    const handlerEliminarUsuario = ( id ) =>{
+        dispatch({
+            type: 'eliminarUsuario',
+            payload: id
+        });
+    }
+
     return(<div className="row">
         <div className="col-6">
             <FormularioUsuario handlerAgregarUsuario={ handlerAgregarUsuario }/>
@@ -45,7 +52,7 @@ export const ListaDeUsuarios = ()=>{
                                 <button className="btn btn-secondary">Editar</button>
                             </td>
                             <td>
-                                <button className="btn btn-danger">Eliminar</button>
+                                <button className="btn btn-danger" onClick={()=> handlerEliminarUsuario(user.id)}>Eliminar</button>
                             </td>
                         </tr>
                     )
