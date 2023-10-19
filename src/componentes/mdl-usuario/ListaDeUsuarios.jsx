@@ -23,7 +23,7 @@ export const ListaDeUsuarios = ()=>{
     const handlerAgregarUsuario = ( usuario ) => {
         let type;
 
-        if(usuario.id === 0){
+        if(!usuario.id){
             type = 'addUser';
         }else{
             type = 'updateUser'
