@@ -1,41 +1,15 @@
-import { useEffect, useState } from "react";
+import { useFormularioUsuario } from "../../hooks/useFormularioUsuario";
 
 export const FormularioUsuario = ( {handlerAgregarUsuario, usuarioSeleccionado} ) =>{
 
-    const initialUserForm = {
-        nombre_usuario: '',
-        clave: '',
-        email: ''
-    }
-    const [formularioUsuario, setFormularioUsuario] = useState(initialUserForm);
-    const {nombre_usuario, clave, email} = formularioUsuario;
-
-    useEffect( ()=>{
-        setFormularioUsuario({
-            ...usuarioSeleccionado, 
-            clave: ''
-        });
-    }, [usuarioSeleccionado] );
-
-    const onInputChange = ({ target }) =>{
-        console.log(target.value);
-        const {name, value} = target;
-        setFormularioUsuario({
-            ...formularioUsuario,
-            [name] : value
-        });
-    }
-
-    const onSubmit = (event) => {
-        event.preventDefault();
-        if(!nombre_usuario || (!clave && !formularioUsuario.id) || !email){
-            alert('Todos los campos del formulario deben de estar llenos');
-            return;
-        }
-        //console.log(formularioUsuario);
-        handlerAgregarUsuario(formularioUsuario);
-        setFormularioUsuario(initialUserForm);
-    }
+    const{
+        formularioUsuario,
+        nombre_usuario,
+        clave,
+        email,
+        onInputChange,
+        onSubmit
+    } = useFormularioUsuario( {handlerAgregarUsuario, usuarioSeleccionado} );
     
     return(<form onSubmit={ onSubmit }>
         <input className="form-control my-3 w-75" type="text" name="nombre_usuario" onChange={ onInputChange } value={ nombre_usuario } placeholder="Nombre de usuario"/>
