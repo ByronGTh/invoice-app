@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Swal from "sweetalert2";
 
 const initialUserForm = {
     nombre_usuario: '',
@@ -28,7 +29,11 @@ export const useFormularioUsuario = ( {handlerAgregarUsuario, usuarioSeleccionad
     const onSubmit = (event) => {
         event.preventDefault();
         if(!nombre_usuario || (!clave && !formularioUsuario.id) || !email){
-            alert('Todos los campos del formulario deben de estar llenos');
+            Swal.fire(
+                'Error de validacion',
+                'Debe completar los campos del formulario',
+                'Error'
+              )
             return;
         }
         handlerAgregarUsuario(formularioUsuario);
