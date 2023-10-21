@@ -13,7 +13,8 @@ export const usersReducer = (state = [], action) => {
             return state.map( u => {
                 if (u.id === action.payload.id) {
                     return {
-                        ...action.payload
+                        ...action.payload,
+                        clave: u.clave
                     };
                 }
                 return u;
