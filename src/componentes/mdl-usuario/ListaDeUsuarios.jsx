@@ -1,6 +1,7 @@
 import { useEffect, useReducer, useState } from "react";
 import { FormularioUsuario } from "./FormularioUsuario";
 import { usersReducer } from "../../reducer/usersReducer";
+import Swal from "sweetalert2";
 
 export const ListaDeUsuarios = ()=>{
 
@@ -33,6 +34,12 @@ export const ListaDeUsuarios = ()=>{
             type,
             payload: usuario
         });
+
+        Swal.fire(
+            (!usuario.id) ? 'Usuario creado correctamente!' : 'Usuario Actualizado correctamente!',
+            (!usuario.id) ? 'El usuario a sido creado correctamente' : 'El usuario ha sido actualizado correctamente',
+            'success'
+        )
     }
 
     const handlerModificar = (usuario) => {
@@ -40,10 +47,29 @@ export const ListaDeUsuarios = ()=>{
     }
 
     const handlerEliminarUsuario = ( id ) =>{
-        dispatch({
-            type: 'eliminarUsuario',
-            payload: id
-        });
+
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+          }).then((result) => {
+            if (result.isConfirmed) {
+                dispatch({
+                    type: 'eliminarUsuario',
+                    payload: id
+                });
+              Swal.fire(
+                'Usuario eliminado!',
+                'El usuario se a eliminado correctamente.',
+                'success'
+              )
+            }
+          })
+        
     }
 
     return(<div className="row">
