@@ -28,7 +28,7 @@ export const FormularioUsuario = ( {handlerAgregarUsuario, usuarioSeleccionado} 
 
     const onSubmit = (event) => {
         event.preventDefault();
-        if(!nombre_usuario || !clave || !email){
+        if(!nombre_usuario || (!clave && !formularioUsuario.id) || !email){
             alert('Todos los campos del formulario deben de estar llenos');
             return;
         }
