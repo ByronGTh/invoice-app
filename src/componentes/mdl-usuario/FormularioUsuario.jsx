@@ -1,6 +1,6 @@
 import { useFormularioUsuario } from "../../hooks/useFormularioUsuario";
 
-export const FormularioUsuario = ( {handlerAgregarUsuario, usuarioSeleccionado} ) =>{
+export const FormularioUsuario = ( {handlerAgregarUsuario, usuarioSeleccionado, handlerCerrarFormulario} ) =>{
 
     const{
         formularioUsuario,
@@ -18,5 +18,6 @@ export const FormularioUsuario = ( {handlerAgregarUsuario, usuarioSeleccionado} 
         }
         <input className="form-control my-3 w-75" type="email" name="email" onChange={ onInputChange } value={ email } placeholder="Email"/>
         <button className="btn btn-success">{formularioUsuario.id > 0 ? 'Editar' : 'Guardar'}</button>
+        <button className="btn btn-success" onClick={ ()=>handlerCerrarFormulario() } type="button">Cerrar</button>
     </form>);
 }
