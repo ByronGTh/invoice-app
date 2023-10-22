@@ -20,6 +20,7 @@ export const ListaDeUsuarios = ()=>{
 
     const [usuarios, dispatch] = useReducer(usersReducer, initialUsers);
     const [usuarioSeleccionado, setUsuarioSeleccionado] = useState(initialUserForm);
+    const [formularioVisible, setFormularioVisible] = useState(false);
 
     const handlerAgregarUsuario = ( usuario ) => {
         let type;
@@ -40,10 +41,12 @@ export const ListaDeUsuarios = ()=>{
             (!usuario.id) ? 'El usuario a sido creado correctamente' : 'El usuario ha sido actualizado correctamente',
             'success'
         )
+        handlerCerrarFormulario();
     }
 
     const handlerModificar = (usuario) => {
         setUsuarioSeleccionado({ ...usuario });
+        setFormularioVisible(true);
     }
 
     const handlerEliminarUsuario = ( id ) =>{
@@ -72,11 +75,27 @@ export const ListaDeUsuarios = ()=>{
         
     }
 
+    const handlerAbrirFormulario = () => {
+        setFormularioVisible(true);
+    }
+
+    const handlerCerrarFormulario = () => {
+        setFormularioVisible(false);
+        setUsuarioSeleccionado(initialUserForm);
+    }
+
     return(<div className="row">
+        {!formularioVisible || 
+            <div className="col-6">
+                <FormularioUsuario handlerAgregarUsuario={ handlerAgregarUsuario } usuarioSeleccionado={ usuarioSeleccionado } handlerCerrarFormulario={ handlerCerrarFormulario } />
+            </div>
+        }
+        
         <div className="col-6">
-            <FormularioUsuario handlerAgregarUsuario={ handlerAgregarUsuario } usuarioSeleccionado={ usuarioSeleccionado }/>
-        </div>
-        <div className="col-6">
+            {formularioVisible ||
+                <button className="btn btn-primary" onClick={()=>{setFormularioVisible(true)}}>Crear usuario</button> 
+            }
+            
             {usuarios.length === 0
             ? <div className="alert alert-warning">No hay usuarios en el sistema</div>
             : <table className="table table-hover table-striped">
